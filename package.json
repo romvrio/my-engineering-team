@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  },
+  "name": "my-engineering-team",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romvrio/my-engineering-team.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romvrio/my-engineering-team/issues"
+  },
+  "homepage": "https://github.com/romvrio/my-engineering-team#readme"
+}
