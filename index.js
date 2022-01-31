@@ -30,3 +30,39 @@ function employeePrompt() {
 
 }
 
+function mangerPrompt() {
+    return inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'manager',
+                message: 'What is your office number?'
+
+            }
+        ])
+}
+
+
+function engineerPrompt() {
+    return inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'github',
+                message: 'What is your GitHub username?'
+
+            }
+        ])
+}
+
+function internPrompt() {
+    return inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'school',
+                message: 'What is the name your school?'
+
+            }
+        ])
+}
