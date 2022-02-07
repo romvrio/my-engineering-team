@@ -1,7 +1,7 @@
 const Employee = require("../lib/Employee");
 
-function generateCompany(data) {
-    console.log(data)
+function generateCompany(answers) {
+    console.log(answers)
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -11,8 +11,8 @@ function generateCompany(data) {
         <title>Document</title>
     </head>
     <body>
-        <h1> ${data.name} </h1>
-        <h2> ${data.id} </h2>
+        <h1> ${answers.name} </h1>
+        <h2> ${answers.id} </h2>
     </body>
     </html>`
 }

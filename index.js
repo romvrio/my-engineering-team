@@ -1,15 +1,18 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const jest = require('jest');
-const generateCompany = require('./dist/generate-company.js');
+const generateCompany = require('./dist/generate-company');
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const console = require('console');
-const answers = []
 
-function employeePrompt() {
+const answers = [];
+
+//When I recive data back console.log data object and pass it into answers array.
+
+const employeePrompt = (data) => {
 
     return inquirer
         .prompt([
@@ -34,10 +37,29 @@ function employeePrompt() {
                 message: 'What is your role in the company?',
                 choices: ['Manager', 'Engineer', 'Intern']
             }
-        ]);
+        ]).then(data => {
+            if (data.role) {
+                answers.push(data)
+                chooseRoles(data.role);
+            }
+        })
 }
 
-function confirmationPrompt() {
+const chooseRoles = (data) => {
+    switch (data) {
+        case 'Manager':
+            managerPrompt()
+            break;
+        case 'Engineer':
+            engineerPrompt()
+            break;
+        case 'Intern':
+            internPrompt()
+            break;
+    };
+}
+
+const confirmationPrompt = () => {
     return inquirer
         .prompt([
             {
@@ -51,12 +73,13 @@ function confirmationPrompt() {
             if (data.validation === "Yes") {
                 writeToFile();
             } else {
-                employeePrompt();
+                employeePrompt()
             }
         })
 }
 
-function managerPrompt() {
+// MANAGER
+const managerPrompt = () => {
     return inquirer
         .prompt([
             {
@@ -66,11 +89,13 @@ function managerPrompt() {
 
             }
         ]).then(data => {
-            console.log("61", data);
+            answers.push(data);
             confirmationPrompt();
         })
 }
-function engineerPrompt() {
+
+//ENGINEER
+const engineerPrompt = () => {
     return inquirer
         .prompt([
             {
@@ -80,12 +105,13 @@ function engineerPrompt() {
 
             }
         ]).then(data => {
-            console.log(data);
+            answers.push(data);
             confirmationPrompt();
         })
 }
 
-function internPrompt() {
+//INTERN
+const internPrompt = () => {
     return inquirer
         .prompt([
             {
@@ -95,30 +121,14 @@ function internPrompt() {
 
             }
         ]).then(data => {
-            console.log(data);
+            answers.push(data);
             confirmationPrompt();
         })
 }
 
-employeePrompt()
-    // Add the data to an empty array of employees, use that data from each emplyee to do so
-    .then(data => {
-        console.log("108", data);
-        switch (data.role) {
-            case 'Manager':
-                managerPrompt()
-                break;
-            case 'Engineer':
-                engineerPrompt()
-                break;
-            case 'Intern':
-                internPrompt()
-                break;
-        }
-    });
+const writeToFile = () => {
 
-function writeToFile() {
-    const companyHtmlData = generateCompany(data);
+    const companyHtmlData = generateCompany(answers);
 
     fs.writeFile('./index.html', companyHtmlData, err => {
         if (err) throw new Error(err);
@@ -127,3 +137,10 @@ function writeToFile() {
     });
 }
 
+const init = () => {
+    employeePrompt()
+        .then(data => { chooseRoles(data) })
+}
+
+
+init();
