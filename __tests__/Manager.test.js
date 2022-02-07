@@ -6,5 +6,5 @@ test('creates a manager object', () => {
     expect(manager.name).toBe('');
     expect(manager.id).toEqual(expect.any(Number));
     expect(manager.email).toBe()
-})
+});
 
