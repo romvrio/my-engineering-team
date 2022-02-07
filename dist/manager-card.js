@@ -1,16 +1,16 @@
 const Employee = require("../lib/Employee");
 
-const engineerCard = () => {
+const managerCard = () => {
     return `<div class="card text-center" style="width: 24rem;">
     <div class="card-header">
-      Name: ${answers.name}
+      Name: ${answers.Name}
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${answers.id}</li>
       <li class="list-group-item">Email: ${answers.email}</li>
-      <li class="list-group-item">GitHub: ${answers.github}</li>
+      <li class="list-group-item">Office Number: ${answers.office}</li>
     </ul>
   </div>`
 }
 
-module.exports = engineerCard;
+module.exports = managerCard;
